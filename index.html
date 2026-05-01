@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Diagnostic Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto">
+        <header class="mb-8 border-b border-slate-200 pb-4">
+            <h1 class="text-3xl font-bold text-slate-800">Metabolic Diagnostic Client</h1>
+            <p class="text-slate-500">Connected to Python REST API Engine</p>
+        </header>
+
+        <!-- Form Section -->
+        <div id="questionnaire-form" class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-slate-200 mb-8">
+            <h2 class="text-xl font-bold mb-6 text-blue-600">Patient Intake Assessment</h2>
+            
+            <form id="intakeForm" onsubmit="event.preventDefault(); submitToBackend();">
+                
+                <!-- BLOCK 1: DIETARY BASELINE -->
+                <h3 class="font-bold text-lg border-b pb-2 mb-4 text-slate-700">Block 1: Dietary Baseline</h3>
+                <div class="space-y-6 mb-8">
+                    
+                    <div class="bg-slate-50 p-4 rounded-lg">
+                        <p class="font-semibold mb-2">1. What is your primary diet?</p>
+                        <div class="grid md:grid-cols-3 gap-2">
+                            <label class="flex items-center space-x-2"><input type="radio" name="diet" value="diet_strict_vegan"> <span>Strict Vegan</span></label>
+                            <label class="flex items-center space-x-2"><input type="radio" name="diet" value="diet_vegetarian"> <span>Vegetarian</span></label>
+                            <label class="flex items-center space-x-2"><input type="radio" name="diet" value="" checked> <span>Meat-eater</span></label>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-lg">
+                        <p class="font-semibold mb-2">2. Staple carbohydrate?</p>
+                        <div class="grid md:grid-cols-2 gap-2">
+                            <label class="flex items-center space-x-2"><input type="radio" name="carbs" value="carbs_polished"> <span>Polished (White Rice/Refined)</span></label>
+                            <label class="flex items-center space-x-2"><input type="radio" name="carbs" value="" checked> <span>Unpolished (Brown Rice/Millets)</span></label>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-lg">
+                        <p class="font-semibold mb-2">3. Vegetable preparation?</p>
+                        <div class="grid md:grid-cols-2 gap-2">
+                            <label class="flex items-center space-x-2"><input type="radio" name="veg" value="veg_heavily_cooked"> <span>Heavily boiled / deep-fried</span></label>
+                            <label class="flex items-center space-x-2"><input type="radio" name="veg" value="" checked> <span>Lightly steamed / Raw</span></label>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-lg">
+                        <p class="font-semibold mb-2">4. Do you soak/sprout dals (lentils)?</p>
+                        <div class="grid md:grid-cols-3 gap-2">
+                            <label class="flex items-center space-x-2"><input type="radio" name="dals" value="dals_never_soaked"> <span>Rarely / Never</span></label>
+                            <label class="flex items-center space-x-2"><input type="radio" name="dals" value="dals_sometimes_soaked"> <span>Sometimes</span></label>
+                            <label class="flex items-center space-x-2"><input type="radio" name="dals" value="" checked> <span>Always</span></label>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-lg">
+                        <p class="font-semibold mb-2">5. Dairy consumption?</p>
+                        <div class="grid md:grid-cols-3 gap-2">
+                            <label class="flex items-center space-x-2"><input type="radio" name="dairy" value="dairy_rare"> <span>Rarely / Avoid</span></label>
+                            <label class="flex items-center space-x-2"><input type="radio" name="dairy" value="dairy_infrequent"> <span>1-2 times a week</span></label>
+                            <label class="flex items-center space-x-2"><input type="radio" name="dairy" value="" checked> <span>Daily</span></label>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-lg">
+                        <p class="font-semibold mb-2">6. Bright veggies & dark greens?</p>
+                        <div class="grid md:grid-cols-3 gap-2">
+                            <label class="flex items-center space-x-2"><input type="radio" name="greens" value="greens_rare"> <span>Rarely</span></label>
+                            <label class="flex items-center space-x-2"><input type="radio" name="greens" value="greens_infrequent"> <span>Few times a week</span></label>
+                            <label class="flex items-center space-x-2"><input type="radio" name="greens" value="" checked> <span>Daily</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOCK 2: LIFESTYLE -->
+                <h3 class="font-bold text-lg border-b pb-2 mb-4 text-slate-700">Block 2: Environment & Lifestyle</h3>
+                <div class="space-y-6 mb-8">
+                    
+                    <div class="bg-slate-50 p-4 rounded-lg">
+                        <p class="font-semibold mb-2">7. Morning Sun Exposure?</p>
+                        <div class="grid md:grid-cols-3 gap-2">
+                            <label class="flex items-center space-x-2"><input type="radio" name="sun" value="sun_none"> <span>Almost none</span></label>
+                            <label class="flex items-center space-x-2"><input type="radio" name="sun" value="sun_minimal"> <span>< 15 mins</span></label>
+                            <label class="flex items-center space-x-2"><input type="radio" name="sun" value="" checked> <span>15-30+ mins</span></label>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-lg">
+                        <p class="font-semibold mb-2">8. Cooking Oil Used?</p>
+                        <div class="grid md:grid-cols-3 gap-2">
+                            <label class="flex items-center space-x-2"><input type="radio" name="oil" value="oil_refined"> <span>Highly Refined</span></label>
+                            <label class="flex items-center space-x-2"><input type="radio" name="oil" value="oil_mixed"> <span>Mixed/Unsure</span></label>
+                            <label class="flex items-center space-x-2"><input type="radio" name="oil" value="" checked> <span>Unrefined/Ghee</span></label>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-lg">
+                        <p class="font-semibold mb-2">9. Salt usage?</p>
+                        <div class="grid md:grid-cols-2 gap-2">
+                            <label class="flex items-center space-x-2"><input type="radio" name="salt" value="salt_unfortified"> <span>Unfortified (Rock/Pink)</span></label>
+                            <label class="flex items-center space-x-2"><input type="radio" name="salt" value="" checked> <span>Iodized</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOCK 3: SYMPTOMS (Multi-select) -->
+                <h3 class="font-bold text-lg border-b pb-2 mb-4 text-slate-700">Block 3: Systemic Symptoms</h3>
+                <p class="text-sm text-slate-500 mb-3">Select all that apply:</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8 bg-slate-50 p-4 rounded-lg">
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="sym_fatigue"> <span>Constant Fatigue</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="sym_brain_fog"> <span>Brain Fog</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="sym_tingling"> <span>Tingling/Numbness</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="sym_weight_loss"> <span>Unexplained Weight Loss</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="sym_weight_gain"> <span>Unexplained Weight Gain</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="sym_mood"> <span>Mood Changes</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="sym_muscle_weakness"> <span>Muscle Weakness</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="sym_bone_ache"> <span>Bone/Back Ache</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="sym_frequent_sickness"> <span>Frequent Sickness</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="sym_slow_healing"> <span>Slow Wound Healing</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="sym_dry_skin"> <span>Dry/Rough Skin</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="sym_hair_fall"> <span>Excessive Hair Fall</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="sym_early_graying"> <span>Early Graying</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="sym_poor_vision"> <span>Poor Night Vision</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="sym_pale_skin"> <span>Pale Skin/Eyelids</span></label>
+                </div>
+
+                <!-- BLOCK 4: RED FLAGS (Multi-select) -->
+                <h3 class="font-bold text-lg border-b pb-2 mb-4 text-red-600">Block 4: Clinical Red Flags (+3 points)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8 bg-red-50 p-4 rounded-lg border border-red-100">
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="clin_bleeding_gums"> <span>Bleeding Gums</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="clin_mouth_cracks"> <span>Cracks at mouth corners</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="clin_smooth_tongue"> <span>Smooth/red tongue</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="clin_mouth_ulcers"> <span>Frequent mouth ulcers</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="clin_tooth_decay"> <span>Unexplained tooth decay</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="clin_brittle_nails"> <span>Brittle nails</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="clin_spoon_nails"> <span>Spoon-shaped nails</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="clin_bruise_easily"> <span>Bruise easily</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="clin_sun_rash"> <span>Scaly sun rash</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="clin_goiter"> <span>Neck swelling (Goiter)</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="clin_loss_taste_smell"> <span>Loss of taste/smell</span></label>
+                    <label class="flex items-center space-x-2"><input type="checkbox" class="sym-cb" value="clin_severe_dry_eyes"> <span>Severe dry eyes</span></label>
+                </div>
+
+                <button type="submit" class="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold w-full hover:bg-blue-700 text-lg shadow-lg">
+                    Analyze with Python Engine
+                </button>
+            </form>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results-container" class="hidden bg-white p-6 md:p-8 rounded-xl shadow-lg border-2 border-blue-100">
+            <h2 class="text-2xl font-bold mb-4">Diagnostic Report</h2>
+            <div id="api-status" class="text-sm mb-6 px-3 py-1.5 bg-green-100 text-green-800 rounded font-mono inline-block"></div>
+            
+            <div id="deficiency-list" class="space-y-4">
+                <!-- JS will inject results here -->
+            </div>
+            
+            <button onclick="document.getElementById('results-container').classList.add('hidden'); window.scrollTo(0,0);" class="mt-8 text-blue-600 font-bold hover:underline">
+                ← Re-evaluate
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // CODESPACES MAGIC FIX: Automatically detect Codespaces and reroute to backend port 3000
+        let API_URL = "http://127.0.0.1:3000/api/analyze";
+        if (window.location.hostname.includes("github.dev")) {
+            const currentUrl = new URL(window.location.href);
+            // Swap frontend port (8080) mapping to backend port (3000)
+            currentUrl.hostname = currentUrl.hostname.replace("-8080", "-3000"); 
+            API_URL = currentUrl.origin + "/api/analyze";
+        }
+
+        async function submitToBackend() {
+            // 1. Gather all checked Radios and Checkboxes
+            const selectedKeys = [];
+            
+            document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
+                if (radio.value) selectedKeys.push(radio.value);
+            });
+            
+            document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+                if (cb.value) selectedKeys.push(cb.value);
+            });
+
+            try {
+                // 2. Fetch API
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ answers: selectedKeys })
+                });
+
+                if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+
+                const data = await response.json();
+                renderResults(data);
+
+            } catch (error) {
+                alert("API CONNECTION ERROR!\n\n1. Make sure backend_api.py is running on port 3000.\n2. In Codespaces, go to the 'Ports' tab and make sure Port 3000 is set to 'Public'.\n\nDetails: " + error.message);
+            }
+        }
+
+        function renderResults(data) {
+            document.getElementById('results-container').classList.remove('hidden');
+            document.getElementById('results-container').scrollIntoView({ behavior: 'smooth' });
+            
+            const listEl = document.getElementById('deficiency-list');
+            listEl.innerHTML = ""; 
+
+            document.getElementById('api-status').innerText = `API: 200 OK | Risks Found: ${data.total_risks_identified}`;
+
+            if (data.is_optimal_health) {
+                listEl.innerHTML = `<div class="p-6 bg-emerald-50 text-emerald-800 rounded-xl border border-emerald-200 font-medium text-lg">Your profile shows optimal clinical health. No significant deficiencies detected based on current inputs.</div>`;
+                return;
+            }
+
+            data.deficiencies.forEach(item => {
+                const isHigh = item.score >= 6;
+                const html = `
+                    <div class="p-5 rounded-xl border-l-4 shadow-sm ${isHigh ? 'border-red-500 bg-red-50' : 'border-amber-400 bg-amber-50'}">
+                        <div class="flex justify-between items-center font-bold text-slate-800 mb-2">
+                            <span class="text-lg">${item.nutrient}</span>
+                            <span class="text-xs px-2 py-1 rounded ${isHigh ? 'bg-red-200 text-red-800' : 'bg-amber-200 text-amber-800'} uppercase tracking-wide">
+                                ${item.severity} (Score: ${item.score})
+                            </span>
+                        </div>
+                        <p class="text-slate-700 leading-relaxed">${item.advice}</p>
+                    </div>
+                `;
+                listEl.innerHTML += html;
+            });
+        }
+    </script>
+</body>
+</html>
