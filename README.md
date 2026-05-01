@@ -135,4 +135,4 @@ The diagnostic engine uses a cumulative weighting system derived from establishe
 *Disclaimer: This tool is built for academic demonstration purposes and does not replace professional medical diagnosis.*
 ```
 
-Let me know if you need to add anything else to the repo before you finalize it!
+Let me know if you need to add anything else to the repo before you finalize it
