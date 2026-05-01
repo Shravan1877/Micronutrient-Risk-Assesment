@@ -1,8 +1,3 @@
-Here is a highly polished, professional `README.md` file ready for your GitHub repository. I've added standard open-source sections like Badges, Table of Contents, Prerequisites, and a clean Folder Structure to make it look incredibly sharp for academic or portfolio purposes!
-
-Just copy everything inside the block below and paste it into your `README.md` file:
-
-```markdown
 # 🧬 Metabolic Diagnostic Engine
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
